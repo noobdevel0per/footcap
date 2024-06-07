@@ -34,14 +34,6 @@
 <!-- adobe scripts -->
   <script src="https://assets.adobedtm.com/6196ef54ab10/ff00715af726/launch-826b2dfe52d4-development.min.js" async></script>
 
-
-  <script>function setCookie(cname, cvalue, exdays) {
-  const d = new Date();
-  d.setTime(d.getTime() + (exdays*24*60*60*1000));
-  let expires = "expires="+ d.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-  </script>
 </head>
 
 <body id="top">
@@ -1518,7 +1510,9 @@
   -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
+  
+<script> document.cookie = "user=John";
+</script>
 </body>
 
 </html>
