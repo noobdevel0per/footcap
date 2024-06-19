@@ -54,31 +54,31 @@ function scrollToSection(sectionId) {
 /**
  * Handle gender selection
  */
-// function selectGender(gender) {
-//   // Store the selected gender in localStorage
-//   localStorage.setItem('selectedGender', gender);
+function selectGender(gender) {
+  // Store the selected gender in localStorage
+  localStorage.setItem('selectedGender', gender);
 
-//   // Call pageParams to set the custom parameter
-//   adobe.target.pageParams({
-//     gender: gender
-//   });
+  // Call pageParams to set the custom parameter
+  adobe.target.pageParams({
+    gender: gender
+  });
 
-//   // After setting the parameter, fetch an offer using getOffer()
-//   adobe.target.getOffer({
-//     mbox: 'target-global-mbox',  // Replace with your mbox name
-//     success: function(offer) {
-//       console.log('Offer received:', offer);
-//       // Handle the offer display or further processing here
-//     },
-//     error: function(status, error) {
-//       console.error('Error fetching offer:', status, error);
-//       // Handle errors if needed
-//     }
-//   });
+  // After setting the parameter, fetch an offer using getOffer()
+  adobe.target.getOffer({
+    mbox: 'target-global-mbox',  // Replace with your mbox name
+    success: function(offer) {
+      console.log('Offer received:', offer);
+      // Handle the offer display or further processing here
+    },
+    error: function(status, error) {
+      console.error('Error fetching offer:', status, error);
+      // Handle errors if needed
+    }
+  });
 
-//   // Hide the modal after selecting gender
-//   document.getElementById('genderModal').style.display = 'none';
-// }
+  // Hide the modal after selecting gender
+  document.getElementById('genderModal').style.display = 'none';
+}
 
 
 
