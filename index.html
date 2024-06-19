@@ -20,6 +20,7 @@
   <!-- 
     - google font link
   -->
+    <script src="https://assets.adobedtm.com/6196ef54ab10/ff00715af726/launch-826b2dfe52d4-development.min.js" async></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -32,54 +33,51 @@
   <link rel="preload" href="./assets/images/hero-banner.png" as="image">
 
   <script>
+    //prehiding snippet for Adobe Target with asynchronous tags deployment
     ;(function(win, doc, style, timeout) {
-  var STYLE_ID = 'at-body-style';
-
-  function getParent() {
-    return doc.getElementsByTagName('head')[0];
-  }
-
-  function addStyle(parent, id, def) {
-    if (!parent) {
-      return;
+    var STYLE_ID = 'at-body-style';
+    function getParent() {
+       return doc.getElementsByTagName('head')[0];
     }
-
-    var style = doc.createElement('style');
-    style.id = id;
-    style.innerHTML = def;
-    parent.appendChild(style);
-  }
-
-  function removeStyle(parent, id) {
-    if (!parent) {
-      return;
+    function addStyle(parent, id, def) {
+       if (!parent) {
+       return;
+       }
+       var style = doc.createElement('style');
+       style.id = id;
+       style.innerHTML = def;
+       parent.appendChild(style);
     }
-
-    var style = doc.getElementById(id);
-
-    if (!style) {
-      return;
+    function removeStyle(parent, id) {
+       if (!parent) {
+       return;
+       }
+       var style = doc.getElementById(id);
+       if (!style) {
+       return;
+       }
+       parent.removeChild(style);
     }
+    addStyle(getParent(), STYLE_ID, style);
+    setTimeout(function() {
+       removeStyle(getParent(), STYLE_ID);
+    }, timeout);
+    }(window, document, "body {opacity: 0 !important}", 3000));
+ </script>
+ 
 
-    parent.removeChild(style);
-  }
-
-  addStyle(getParent(), STYLE_ID, style);
-  setTimeout(function() {
-    removeStyle(getParent(), STYLE_ID);
-  }, timeout);
-}(window, document, "body {opacity: 0 !important}", 3000));
-
-  </script>
-
-
-
-
-<!-- adobe scripts -->
- <script src="https://assets.adobedtm.com/6196ef54ab10/9126940fd3c0/launch-0a5aa30e4340-development.min.js" async></script>
-</head>
+  <script src="https://assets.adobedtm.com/6196ef54ab10/0274e2823e4e/launch-9c27428b1bf5-development.min.js" async></script>
+    </head>
 
 <body id="top">
+
+  <div id="genderModal" class="modal">
+    <div class="modal-content">
+      <h2>Select Your Gender</h2>
+      <button class="male-btn" onclick="selectGender('male')">Male</button>
+      <button class="female-btn" onclick="selectGender('female')">Female</button>
+    </div>
+  </div>
 
   <!-- 
     - #HEADER
@@ -196,7 +194,9 @@
           </h2>
 
           <p class="hero-text">
-            "Elevate your style with our curated shoe collection. From timeless classics to trendy favorites, find the perfect pair for any occasion. Step into comfort and fashion with our selection of high-quality designs. Explore now!"
+            "Elevate your style with our curated shoe collection. From timeless classics to trendy favorites, find the
+            perfect pair for any occasion. Step into comfort and fashion with our selection of high-quality designs.
+            Explore now!"
           </p>
 
           <button class="btn btn-primary">
@@ -819,7 +819,7 @@
         - #CTA
       -->
 
-      <section id="shopNow"  class="section cta">
+      <section id="shopNow" class="section cta">
         <div class="container">
 
           <ul class="cta-list">
@@ -1553,7 +1553,7 @@
   -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-  
+
 </body>
 
 </html>
