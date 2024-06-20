@@ -75,6 +75,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
           // Store gender in localStorage
           localStorage.setItem('userGender', gender);
+        // Reload the page to send the parameter to Adobe Target
+                    window.location.reload();
       });
   } else {
       // If gender is already set, hide the popup
