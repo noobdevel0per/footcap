@@ -44,3 +44,41 @@ function scrollToSection(sectionId) {
   const section = document.getElementById(sectionId);
   section.scrollIntoView({ behavior: 'smooth' });
 }
+
+
+
+//medal script
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Check if the user has already selected gender
+  if (!localStorage.getItem('userGender')) {
+      // Show the popup if user's gender is not set
+      var genderPopup = document.getElementById('genderPopup');
+      genderPopup.style.display = 'flex';
+
+      // Handle form submission
+      document.getElementById('genderForm').addEventListener('submit', function(event) {
+          event.preventDefault(); // Prevent form submission
+
+          let gender = document.querySelector('input[name="gender"]:checked').value;
+
+          // Store the response using Adobe Target
+          adobe.target.trackEvent({
+              "mbox": "gender-selection",
+              "params": {
+                  "profile.gender": gender
+              }
+          });
+
+          // Hide the popup
+          genderPopup.style.display = 'none';
+
+          // Store gender in localStorage
+          localStorage.setItem('userGender', gender);
+      });
+  } else {
+      // If gender is already set, hide the popup
+      var genderPopup = document.getElementById('genderPopup');
+      genderPopup.style.display = 'none';
+  }
+});
