@@ -1,11 +1,8 @@
 'use strict';
 
-
-
 /**
  * navbar toggle
  */
-
 const overlay = document.querySelector("[data-overlay]");
 const navOpenBtn = document.querySelector("[data-nav-open-btn]");
 const navbar = document.querySelector("[data-navbar]");
@@ -20,12 +17,9 @@ for (let i = 0; i < navElems.length; i++) {
   });
 }
 
-
-
 /**
  * header & go top btn active on page scroll
  */
-
 const header = document.querySelector("[data-header]");
 const goTopBtn = document.querySelector("[data-go-top]");
 
@@ -39,48 +33,49 @@ window.addEventListener("scroll", function () {
   }
 });
 
-
+/**
+ * Function to scroll to a specific section
+ */
 function scrollToSection(sectionId) {
   const section = document.getElementById(sectionId);
-  section.scrollIntoView({ behavior: 'smooth' });
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth' });
+  }
 }
 
-
-
-//medal script
-
+/**
+ * Gender Selection Popup and Form Submission
+ */
 document.addEventListener('DOMContentLoaded', function() {
   // Check if the user has already selected gender
   if (!localStorage.getItem('userGender')) {
-      // Show the popup if user's gender is not set
-      var genderPopup = document.getElementById('genderPopup');
-      genderPopup.style.display = 'flex';
+    // Show the popup if user's gender is not set
+    var genderPopup = document.getElementById('genderPopup');
+    genderPopup.style.display = 'flex';
 
-      // Handle form submission
-      document.getElementById('genderForm').addEventListener('submit', function(event) {
-          event.preventDefault(); // Prevent form submission
+    // Handle form submission
+    document.getElementById('genderForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form submission
 
-          let gender = document.querySelector('input[name="gender"]:checked').value;
+      let gender = document.querySelector('input[name="gender"]:checked').value;
 
-          // Store the response using Adobe Target
-          adobe.target.trackEvent({
-              "mbox": "gender-selection",
-              "params": {
-                  "profile.gender": gender
-              }
-          });
-
-          // Hide the popup
-          genderPopup.style.display = 'none';
-
-          // Store gender in localStorage
-          localStorage.setItem('userGender', gender);
-        // Reload the page to send the parameter to Adobe Target
-                    window.location.reload();
+      // Store the response using Adobe Target
+      adobe.target.trackEvent({
+        "mbox": "gender-selection",
+        "params": {
+          "profile.gender": gender
+        }
       });
+
+      // Store gender in localStorage
+      localStorage.setItem('userGender', gender);
+
+      // Reload the page to apply the changes and send parameters to Adobe Target
+      window.location.reload();
+    });
   } else {
-      // If gender is already set, hide the popup
-      var genderPopup = document.getElementById('genderPopup');
-      genderPopup.style.display = 'none';
+    // If gender is already set, hide the popup
+    var genderPopup = document.getElementById('genderPopup');
+    genderPopup.style.display = 'none';
   }
 });
